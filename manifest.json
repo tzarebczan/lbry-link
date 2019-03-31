@@ -1,17 +1,21 @@
 {
   "name": "LBRY Link",
+  "content_security_policy": "default-src 'none'; script-src 'self'",
+  "permissions": [ 
+      "management",
+      "<all_urls>"
+  ],
   "version": "0.0.5",
   "description": "Finds LBRY URLs on a page and adds a link tag that opens the LBRY desktop app",
   "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": [
-        "*://*.github.com/*",
-        "*://*.twitter.com/*",
-        "*://*.youtube.com/*",
-        "*://*.reddit.com/*"
-      ],
+      "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "background": {
+      "persistent": false,
+      "scripts": ["omni.js"]
+  },
 }
