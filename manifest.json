@@ -5,6 +5,12 @@
       "management",
       "<all_urls>"
   ],
+  "omnibox":{
+      "keyword" : "lbry"
+  },
+  "icons": {
+      "16": "assets/icons/icon-16.png",
+  },
   "version": "0.0.5",
   "description": "Finds LBRY URLs on a page and adds a link tag that opens the LBRY desktop app",
   "manifest_version": 2,
