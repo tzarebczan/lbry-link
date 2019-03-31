@@ -1,4 +1,30 @@
 const urlRegex = /(lbry:\/\/)(@*[a-zA-Z0-9-]*)(#[a-zA-Z0-9]*)*/igm;
+var anchors = document.querySelectorAll('[href^="lbry://"], [href^="LBRY://"]');
+var objects = document.querySelectorAll('[src^="lbry://"], [src^="LBRY://"]');
+var lbry_protocolHandler = 'lbry://';
+var providers = [
+	'https://beta.lbry.tv/',
+];
+
+var a, object, lbry_url;
+
+for(a of anchors){
+	lbry_url = a.getAttribute('href').substr(lbry_protocolHandler.length);
+	if(!urlRegex.test(lbry_url)){continue};
+
+	if(a.getAttribute('href').substr(0, lbry_protocolHandler.length).toLowerCase() == lbry_protocolHandler) {
+		a.setAttribute('href', providers[Math.floor(Math.random()*providers.length)] + lbry_url);
+	}
+}
+
+for(object of objects){
+	lbry_url = object.getAttribute('src').substr(lbry_protocolHandler.length);
+	if(!urlRegex.test(lbry_url)){continue};
+
+	if(object.getAttribute('src').substr(0, lbry_protocolHandler.length).toLowerCase() == lbry_protocolHandler) {
+		object.setAttribute('src', providers[Math.floor(Math.random()*providers.length)] + lbry_url);
+	}
+}
 
 function searchAndInsert(node, x) {
   if (node.nodeName == "#text" && node.nodeValue.match(urlRegex)) {
